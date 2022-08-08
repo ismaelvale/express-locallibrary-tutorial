@@ -8,11 +8,13 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');
 var compression = require('compression');
+var helmet = require('helmet');
 
 var app = express();
 
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://ismaelvale:Library1@cluster0.ysqpk.mongodb.net/local_library?retryWrites=true&w=majority';
+var dev_db_url = 'mongodb+srv://ismaelvale:Library1@cluster0.ysqpk.mongodb.net/local_library?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, {useNewURLParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
