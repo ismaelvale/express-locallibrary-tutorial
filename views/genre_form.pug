@@ -8,6 +8,19 @@ block content
       label(for='name') Genre:
       input#name.form-control(type='text', placeholder='Fantasy, Poetry etc.' name='name' value=(undefined===genre ? '' : genre.name))
     button.btn.btn-primary(type='submit') Submit
+  if genre_books.length
+
+    p #[strong These are the books in this genre. Click to update book info on book page.]
+
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Books
+
+      dl
+      each book in genre_books
+        dt
+          a(href=book.url) #{book.title}
+        dd #{book.summary}
 
   if errors
    ul
