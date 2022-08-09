@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -13,7 +14,7 @@ var helmet = require('helmet');
 var app = express();
 
 var mongoose = require('mongoose');
-var dev_db_url = 'mongodb+srv://ismaelvale:Library1@cluster0.ysqpk.mongodb.net/local_library?retryWrites=true&w=majority';
+var dev_db_url = process.env.mongo_DB;
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, {useNewURLParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
